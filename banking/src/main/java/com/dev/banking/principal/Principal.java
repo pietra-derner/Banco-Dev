@@ -3,6 +3,8 @@ package com.dev.banking.principal;
 import com.dev.banking.model.Titular;
 import com.dev.banking.repository.ContaRepository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Principal {
@@ -33,7 +35,7 @@ public class Principal {
                 acessaConta();
                 break;
             case 2:
-                acessaConta();
+                cadastraConta();
                 break;
             default:
                 System.out.println("Opção inválida!");
@@ -49,8 +51,39 @@ public class Principal {
     }
 
     public void cadastraConta(){
+        List<Titular> listaTitulares = new ArrayList<>();
         Titular titular = new Titular();
+        System.out.println("Digite o nome do titular:");
+        titular.setTitular(scanner.nextLine());
+        while (titular.getTitular().length() < 3 && !titular.getTitular().contains(" ")){
+            System.out.println("Por favor, digite um nome VÁLIDO do titular:");
+            titular.setTitular(scanner.nextLine());
+        }
 
+        System.out.println("Digite o CPF do titular:");
+        titular.setCpf(scanner.nextLine());
+        System.out.println("Digite o telefone do titular:");
+        titular.setTelefone(scanner.nextLine());
+        System.out.println("Digite o e-mail do titular:");
+        titular.setEmail(scanner.nextLine());
+        while (!titular.getEmail().contains("@") && !titular.getEmail().contains(".com")){
+            System.out.println("O e-mail não é válido!");
+            System.out.println("Digite o e-mail do titular:");
+            titular.setEmail(scanner.nextLine());
+        }
+
+        System.out.println("Digite a profissão do titular:");
+        titular.setProfissao(scanner.nextLine());
+
+        String senha = "";
+        while (!senha.equals(titular.getSenha()) && titular.getSenha().length() < 8){
+            System.out.println("Digite uma senha de acesso:");
+            titular.setSenha(scanner.nextLine());
+            System.out.println("Digite novamente a sua senha:");
+            senha = scanner.nextLine();
+        }
+        listaTitulares.add(titular);
+        System.out.println("Cadastro realizado com sucesso!");
     }
 
     public void realizaDeposito(){
@@ -77,6 +110,5 @@ public class Principal {
     public void acessaInvestimentos(){
 
     }
-
 
 }
