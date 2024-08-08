@@ -44,14 +44,9 @@ public class Principal {
     }
 
     //RESPOSTA AO PRIMEIRO MENU
-
-    public void acessaConta(){
-        //inserir nome do titular
-        //inserir senha de acesso
-    }
+    List<Titular> listaTitulares = new ArrayList<>();
 
     public void cadastraConta(){
-        List<Titular> listaTitulares = new ArrayList<>();
         Titular titular = new Titular();
         System.out.println("Digite o nome do titular:");
         titular.setTitular(scanner.nextLine());
@@ -86,6 +81,65 @@ public class Principal {
         System.out.println("Cadastro realizado com sucesso!");
     }
 
+    public void acessaConta(){
+        System.out.println("Insira o nome do titular da conta:");
+        var nome = scanner.nextLine();
+        for (Titular nomeTitular : listaTitulares){
+            if (nomeTitular.getTitular().equalsIgnoreCase(nome)){
+                System.out.println("Digite a senha de acesso:");
+                var senha = scanner.nextLine();
+                if (nomeTitular.getSenha().equalsIgnoreCase(senha)){
+                    exibeMenuConta();
+                }
+            }
+        }
+        //inserir nome do titular
+        //inserir senha de acesso
+    }
+
+    // MENU DE CONTA CADASTRADA/EXISTENTE
+
+    public void exibeMenuConta(){
+        int opcao;
+        System.out.println("""
+                Digite a opção desejada:
+                1 - Realizar depósito
+                2 - Realizar saque
+                3 - Realizar transferência
+                4 - Visualizar saldo
+                5 - Área de Investimentos
+                                
+                9 - Voltar ao menu inicial
+                0 - Sair
+                """);
+        opcao = scanner.nextInt();
+        scanner.nextLine();
+
+        switch (opcao){
+            case 1:
+                realizaDeposito();
+                break;
+            case 2:
+                realizaSaque();
+                break;
+            case 3:
+                realizaTransferencia();
+                break;
+            case 4:
+                visualizaSaldo();
+                break;
+            case 5:
+                acessaInvestimentos();
+                break;
+            case 9:
+                exibeMenu();
+                break;
+            default:
+                System.out.println("Opção inválida!");
+                break;
+        }
+    }
+
     public void realizaDeposito(){
 
     }
@@ -94,7 +148,7 @@ public class Principal {
 
     }
 
-    public void realizadaTransferencia(){
+    public void realizaTransferencia(){
         //inserir nome do titular da outra conta
         //verifica no banco de dados se o titular existe
     }
