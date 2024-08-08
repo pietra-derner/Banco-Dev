@@ -1,5 +1,6 @@
 package com.dev.banking.principal;
 
+import com.dev.banking.model.Conta;
 import com.dev.banking.model.Titular;
 import com.dev.banking.repository.ContaRepository;
 
@@ -47,11 +48,12 @@ public class Principal {
     List<Titular> listaTitulares = new ArrayList<>();
 
     public void cadastraConta(){
+        Conta conta = new Conta();
         Titular titular = new Titular();
         System.out.println("Digite o nome do titular:");
         titular.setTitular(scanner.nextLine());
         while (titular.getTitular().length() < 3 && !titular.getTitular().contains(" ")){
-            System.out.println("Por favor, digite um nome VÁLIDO do titular:");
+            System.out.println("Por favor, digite um nome válido do titular:");
             titular.setTitular(scanner.nextLine());
         }
 
@@ -77,6 +79,7 @@ public class Principal {
             System.out.println("Digite novamente a sua senha:");
             senha = scanner.nextLine();
         }
+
         listaTitulares.add(titular);
         System.out.println("Cadastro realizado com sucesso!");
     }
@@ -90,11 +93,14 @@ public class Principal {
                 var senha = scanner.nextLine();
                 if (nomeTitular.getSenha().equalsIgnoreCase(senha)){
                     exibeMenuConta();
+                } else {
+                    System.out.println("Senha inválida!");
+                    return;
                 }
+            } else {
+                System.out.println("Titular inexistente.");
             }
         }
-        //inserir nome do titular
-        //inserir senha de acesso
     }
 
     // MENU DE CONTA CADASTRADA/EXISTENTE
@@ -141,6 +147,8 @@ public class Principal {
     }
 
     public void realizaDeposito(){
+        System.out.println("Qual o valor que deseja depositar?");
+        var valor = scanner.nextDouble();
 
     }
 
