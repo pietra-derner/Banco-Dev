@@ -22,7 +22,6 @@ public class Titular {
     private String senha;
 
     @ManyToOne
-//    @JoinColumn(name = "conta_id")
     private Conta conta;
     public Titular(){}
 

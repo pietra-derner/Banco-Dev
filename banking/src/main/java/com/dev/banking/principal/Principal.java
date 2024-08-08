@@ -6,6 +6,7 @@ import com.dev.banking.repository.ContaRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Principal {
@@ -48,8 +49,8 @@ public class Principal {
     List<Titular> listaTitulares = new ArrayList<>();
 
     public void cadastraConta(){
-        Conta conta = new Conta();
         Titular titular = new Titular();
+
         System.out.println("Digite o nome do titular:");
         titular.setTitular(scanner.nextLine());
         while (titular.getTitular().length() < 3 && !titular.getTitular().contains(" ")){
@@ -80,7 +81,12 @@ public class Principal {
             senha = scanner.nextLine();
         }
 
-        listaTitulares.add(titular);
+        Random random = new Random();
+        int numero = random.nextInt(1000);
+        double saldo = 0;
+        Conta conta = new Conta(numero, saldo);
+        repositorio.save(conta);
+
         System.out.println("Cadastro realizado com sucesso!");
     }
 

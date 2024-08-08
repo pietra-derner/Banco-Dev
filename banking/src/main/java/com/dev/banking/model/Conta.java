@@ -24,7 +24,10 @@ public class Conta {
     @OneToMany(mappedBy = "titular", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Titular> titular = new ArrayList<>();
 
-    public Conta(){}
+    public Conta(int numero, double saldo){
+        this.numero = numero;
+        this.saldo = saldo;
+    }
 
     public Conta (DadosConta dadosConta){
         this.numero = dadosConta.numero();
