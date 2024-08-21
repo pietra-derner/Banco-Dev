@@ -1,5 +1,6 @@
 package com.dev.banking.model;
 
+import com.dev.banking.dto.DadosCadastroTitular;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,12 +26,11 @@ public class Titular {
     private Conta conta;
     public Titular(){}
 
-    public Titular(String titular, DadosTitular dadosTitular){
-        this.titular = dadosTitular.titular();
-        this.cpf = dadosTitular.cpf();
-        this.telefone = dadosTitular.telefone();
-        this.email = dadosTitular.email();
-        this.profissao = dadosTitular.profissao();
-        this.senha = dadosTitular.senha();
+    public Titular(String titular, DadosCadastroTitular dados){
+        this.titular = dados.titular();
+        this.cpf = dados.cpf();
+        this.telefone = dados.telefone();
+        this.email = dados.email();
+        this.profissao = dados.profissao();
     }
 }

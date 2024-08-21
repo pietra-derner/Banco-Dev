@@ -1,5 +1,6 @@
 package com.dev.banking.model;
 
+import com.dev.banking.dto.DadosCadastroConta;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,19 +19,19 @@ public class Conta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(unique = true)
-    private int numero;
+    private int numeroConta;
     private double saldo;
 
     @OneToMany(mappedBy = "titular", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Titular> titular = new ArrayList<>();
+    private Titular titular;
 
     public Conta(int numero, double saldo){
-        this.numero = numero;
+        this.numeroConta = numero;
         this.saldo = saldo;
     }
 
-    public Conta (DadosConta dadosConta){
-        this.numero = dadosConta.numero();
-        this.saldo = dadosConta.saldo();
+    public Conta (DadosCadastroConta dados){
+        this.numeroConta = dados.numeroConta();
+        this.saldo = dados.numeroConta();
     }
 }
